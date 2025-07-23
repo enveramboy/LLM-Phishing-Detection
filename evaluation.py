@@ -1,7 +1,7 @@
 
-def Evaluate(model_results):
+def Evaluate(model_result):
     """
-    Calculates Precision, Recall, and F1-Score of the model's results.
+    Calculates Precision, Recall, and F1-Score of the model's result.
 
     Args:
         model_results: Data structure containing features, labels, and predictions.
@@ -14,7 +14,7 @@ def Evaluate(model_results):
     TN = 0
     FP = 0
     FN = 0
-    # TODO: update TP, TN, FP, FN based off model results
+    # TODO: update TP, TN, FP, FN based off model result
 
     # Calculate Precision, Recall, and F1-Score
     precision = TP/(TP + FP)
