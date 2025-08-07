@@ -77,9 +77,9 @@ def main() -> None:
 
 # Example usage:
 #read from the cleaned dataset, output the the specified file. only process the first 5 emails. use the designated model.
-# python pipeline.py --input cleaned_phishing_dataset.csv --output llm_phishing_output.csv --batch 5 --model llama3.2
+# python algorithm.py --input cleaned_phishing_dataset.csv --output llm_phishing_output.csv --batch 5 --model llama3.2
 #same as above, but process all emails + use default naming and model(Ollama 3.2)
-# python pipeline.py --input cleaned_phishing_dataset.csv --batch 0
+# python algorithm.py --input cleaned_phishing_dataset.csv --batch 0
 
 if __name__ == "__main__":
     main()
