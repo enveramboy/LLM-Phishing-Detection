@@ -4,11 +4,11 @@ from bs4 import BeautifulSoup
 
 
 paths = {
-    "Enron": "/Users/bhawna/Desktop/Enron.csv",
-    "Ling": "/Users/bhawna/Desktop/Ling.csv",
-    "SpamAssasin": "/Users/bhawna/Desktop/SpamAssasin.csv",
-    "CEAS_08": "/Users/bhawna/Desktop/CEAS_08.csv",
-    "Nazario": "/Users/bhawna/Desktop/Nazario.csv"
+    "Enron": "phishing_datasets/Enron.csv",
+    "Ling": "phishing_datasets/Ling.csv",
+    "SpamAssasin": "phishing_datasets/SpamAssasin.csv",
+    "CEAS_08": "phishing_datasets/CEAS_08.csv",
+    "Nazario": "phishing_datasets/Nazario.csv"
 }
 
 #email cleaning function 
