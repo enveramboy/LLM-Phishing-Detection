@@ -1,6 +1,9 @@
 import random
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import argparse
+import pathlib
 
 class Evaluator():
     """
@@ -90,15 +93,27 @@ class Evaluator():
         """
         self._Plot('F1 Score')
 
-# Testing
-evaluator = Evaluator()
-mock_model_results = []
-for i in range(100):
-    mock_model_results = []
-    for x in range(100):
-        mock_model_results.append([random.randint(0, 1), random.randint(0, 1)])
-    evaluator.Evaluate(mock_model_results)
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Evaluate precision, recall, and f1-score.")
+    parser.add_argument("--input", required=True, help="Path to cleaned CSV")
+    args = parser.parse_args()
 
-evaluator.Plot_Precision()
-evaluator.Plot_Recall()
-evaluator.Plot_F1_Score()
+    df = pd.read_csv(pathlib.Path(args.input))
+    model_results = []
+    for i in range(len(df)):
+        model_results.append([df.iloc[i, 2], df.iloc[i, 1] == 'Legit'])
+    evaluator = Evaluator()
+    evaluation = evaluator.Evaluate(model_results)
+    print(f"TP: {evaluation['TP']}")
+    print(f"FP: {evaluation['FP']}")
+    print(f"FN: {evaluation['TP']}")
+    print(f"Precision: {evaluation['Precision']}")
+    print(f"Recall: {evaluation['Recall']}")
+    print(f"F1-Score: {evaluation['F1 Score']}")
+
+# Example usage:
+# read from cleaned_phishing_dataset.csv and evaluate it, printing results
+# python subset.py --input cleaned_phishing_dataset.csv
+
+if __name__ == "__main__":
+    main()
