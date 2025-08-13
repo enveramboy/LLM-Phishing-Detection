@@ -21,7 +21,7 @@ class Evaluator():
             model_results: List of predictions, along with their corresponding labels. Indexes correspond to original index of the feature.
     
         Returns:
-            evaluation: Dictionary containing True Positives, False Positives, True Negatives, False Negatives, Precision, Recall, and F1 Score of the model's predictions.
+            evaluation: Dictionary containing True Positives, False Positives, True Negatives, False Negatives, Precision, Recall, Accuracy, and F1 Score of the model's predictions.
         """
 
         TP = 0
@@ -42,6 +42,7 @@ class Evaluator():
         precision = TP/(TP + FP)
         recall = TP/(TP + FN)
         f1_score = 2 * (precision * recall)/(precision + recall)
+        accuracy = (TP + TN)/(TP + TN + FP + FN)
 
         # Store results in results dictionary
         evaluation = {
@@ -51,7 +52,8 @@ class Evaluator():
             "FN": FN,
             "Precision": precision,
             "Recall": recall,
-            "F1 Score": f1_score
+            "F1 Score": f1_score,
+            "Accuracy": accuracy
         }
 
         self.evaluations.append(evaluation)
@@ -101,19 +103,22 @@ def main() -> None:
     df = pd.read_csv(pathlib.Path(args.input))
     model_results = []
     for i in range(len(df)):
-        model_results.append([df.iloc[i, 2], df.iloc[i, 1] == 'Legit'])
+        model_results.append([df.iloc[i, 2], df.iloc[i, 1] == 'Phishing'])
+        print([df.iloc[i, 2], df.iloc[i, 1] == 'Phishing'])
     evaluator = Evaluator()
     evaluation = evaluator.Evaluate(model_results)
     print(f"TP: {evaluation['TP']}")
+    print(f"TN: {evaluation['TN']}")
     print(f"FP: {evaluation['FP']}")
-    print(f"FN: {evaluation['TP']}")
+    print(f"FN: {evaluation['FN']}")
     print(f"Precision: {evaluation['Precision']}")
     print(f"Recall: {evaluation['Recall']}")
     print(f"F1-Score: {evaluation['F1 Score']}")
+    print(f"Accuracy: {evaluation['Accuracy']}")
 
 # Example usage:
 # read from cleaned_phishing_dataset.csv and evaluate it, printing results
-# python subset.py --input cleaned_phishing_dataset.csv
+# python evaluation.py --input cleaned_phishing_dataset.csv
 
 if __name__ == "__main__":
     main()
