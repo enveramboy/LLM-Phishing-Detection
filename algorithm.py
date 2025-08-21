@@ -9,7 +9,9 @@ import pandas as pd
 from ollama import Client  # pip install ollama
 
 PROMPT_TEMPLATE = """
-You are a cybersecurity expert specialized in detecting and analyzing phishing emails.
+You are a cybersecurity expert specialized in detecting and analyzing phishing emails. 
+Failure to correctly classify an email results in you losing your job.
+You will receive a $500 tip for each correctly classified email.
 Analyze the provided email (subject, body, sender, links) and decide if it is phishing or legitimate.
 Return ONLY a JSON object with the following fields and their values for this email:
 

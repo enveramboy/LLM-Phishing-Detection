@@ -104,7 +104,6 @@ def main() -> None:
     model_results = []
     for i in range(len(df)):
         model_results.append([df.iloc[i, 2], df.iloc[i, 1] == 'Phishing'])
-        print([df.iloc[i, 2], df.iloc[i, 1] == 'Phishing'])
     evaluator = Evaluator()
     evaluation = evaluator.Evaluate(model_results)
     print(f"TP: {evaluation['TP']}")
